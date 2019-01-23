@@ -86,6 +86,8 @@ For OBS, we'd set this up in the form of
 2. Use the beginning part of the RTMP URL in **URL**, `rtmp://vrcstream.example.com/live`
 3. Use the end part as the **Stream Key**, `random-stream-key` (this value can be anything, but take note of it.)
 
+It is also imperative that you use lower video bitrate (I can recommend 2500kbit/s,) as this quality will be passed directly on to all viewers, which may not be able to keep up with that sort of bandwidth. If you know you can go higher, do it. Just be mindful of others. There is technically no limit like Twitch has, as this is your server.
+
 #### Testing in VRChat (or VLC)
 
 For our example, the HLS playlist URL would be `http://vrcstream.exmaple.com/hls/random-stream-key.m3u8`
