@@ -33,7 +33,7 @@ rtmp {
     application live { # "live" may be changed to whatever you'd like, this will affect the URLs we use later, though.
       live on;
       
-      allow publish 127.0.0.1 192.168.0.1/1*6; # this may include your entire network, you may be more or less exact with this. 
+      allow publish 127.0.0.1 192.168.0.1/16; # this may include your entire network, you may be more or less exact with this. 
                                                # if you don't care about potential griefing, use `all' in place of the IPs.
       deny publish all; # denied if none of the above apply.
       
