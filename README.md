@@ -101,7 +101,6 @@ This needs futher testing inside of vrchat to see if delay is down
 It is also imperative that you use lower video bitrate (I can recommend 2500kbit/s,) as this quality will be passed directly on to all viewers, which may not be able to keep up with that sort of bandwidth. If you know you can go higher, do it. Just be mindful of others. There is technically no limit like Twitch has, as this is your server, and it's also your upload speed, divide it by aproximately how many people will be in the map with you.
 
 
-
 #### Testing in VRChat (or VLC)
 
 For our example, the HLS playlist URL would be `http://vrcstream.exmaple.com/hls/random-stream-key.m3u8`
@@ -112,6 +111,5 @@ For VLC, go to **File**, **Network Stream**, and enter in the above URL, and Pla
 
 ### Quirks of nginx RTMP HLS method
 
-- There is about a 60 second delay with this configuration. I will research how to get this time down.
 - It will never desync for other players so you may stop/pause/start to your heart's content, but it will start from the beginning of the buffer.
 - VRChat can break state sync, and sometimes end up draining out the 60 second buffer.
