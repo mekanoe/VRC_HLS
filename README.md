@@ -42,6 +42,10 @@ rtmp {
       hls_path /tmp/hls; # this is where all of HLS's files will be stored. 
                          # They are a running replacement so disk space will be minimal. 
                          # Adjust other HLS settings if necessary to level it out if it's a problem.
+                         
+                         
+      hls_playlist_length 4s; # Thies 2 lines should help with latency
+      hls_fragment 1s;        # The hls_fragment should match your keyframe interval in obs see screenshot in readme
       
       # optionally,
       #hls_continuous on;
@@ -86,7 +90,16 @@ For OBS, we'd set this up in the form of
 2. Use the beginning part of the RTMP URL in **URL**, `rtmp://vrcstream.example.com/live`
 3. Use the end part as the **Stream Key**, `random-stream-key` (this value can be anything, but take note of it.)
 
-It is also imperative that you use lower video bitrate (I can recommend 2500kbit/s,) as this quality will be passed directly on to all viewers, which may not be able to keep up with that sort of bandwidth. If you know you can go higher, do it. Just be mindful of others. There is technically no limit like Twitch has, as this is your server.
+Then go to output settings and set it up like
+![OBS example 2](https://tomheberg.fr/img/github/ObsScreenshotvrchls.png)
+
+1. Use **Advanced Output Mode**
+2. Set **Keyframe Interval** to `1`
+
+This needs futher testing inside of vrchat to see if delay is down
+
+It is also imperative that you use lower video bitrate (I can recommend 2500kbit/s,) as this quality will be passed directly on to all viewers, which may not be able to keep up with that sort of bandwidth. If you know you can go higher, do it. Just be mindful of others. There is technically no limit like Twitch has, as this is your server, and it's also your upload speed, divide it by aproximately how many people will be in the map with you.
+
 
 #### Testing in VRChat (or VLC)
 
@@ -98,6 +111,5 @@ For VLC, go to **File**, **Network Stream**, and enter in the above URL, and Pla
 
 ### Quirks of nginx RTMP HLS method
 
-- There is about a 60 second delay with this configuration. I will research how to get this time down.
 - It will never desync for other players so you may stop/pause/start to your heart's content, but it will start from the beginning of the buffer.
 - VRChat can break state sync, and sometimes end up draining out the 60 second buffer.
